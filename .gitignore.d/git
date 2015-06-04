@@ -3,3 +3,5 @@
 !/.git_template/hooks
 !/.git_template/hooks/post-commit
 !/.gitconfig
+!/.gitignore.d
+!/.gitignore.d/git
