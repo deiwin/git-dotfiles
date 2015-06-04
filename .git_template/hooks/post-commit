@@ -1,0 +1,6 @@
+#!/bin/sh
+### lolcommits hook (begin) ###
+export LANG="en_US.utf8"
+export PATH="/usr/bin:/usr/bin:$PATH"
+lolcommits --capture --stealth
+###  lolcommits hook (end)  ###
