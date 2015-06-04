@@ -5,3 +5,4 @@
 !/.gitconfig
 !/.gitignore.d
 !/.gitignore.d/git
+!/README.md
