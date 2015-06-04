@@ -3,3 +3,5 @@
 	email = deiwin.sarjas@gmail.com
 [push]
 	default = simple
+[merge]
+	conflictstyle = diff3
