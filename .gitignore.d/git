@@ -5,3 +5,5 @@
 !/.gitconfig
 !/.gitignore.d
 !/.gitignore.d/git
+!/bin
+!/bin/git-fixup
