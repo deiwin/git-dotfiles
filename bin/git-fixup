@@ -1,0 +1,24 @@
+#!/bin/bash
+set -e
+
+# Fixes current staged changes up with the specified commit.
+# I.e. the current staged changes will be added to a fixup commit
+# and then an interactive rebase is started that includes the commit
+# to be fixed up. The interactive rebase is run with the --autosquash
+# flag that puts the fixup commit in the correct place, so in the most
+# common scenario the rebase can be just continued by saving and
+# closing the opened text file.
+
+if [ $# -eq 1 ]
+then
+  # Get the reference to the commit before creating the fixup commit,
+  # because, say, if the argument is relative to the HEAD then the
+  # commit it refers to will change once we create a new commit on the
+  # HEAD.
+  COMMIT_TO_BE_FIXED=`git show --format=%H --no-patch $1`
+  git commit --fixup=$COMMIT_TO_BE_FIXED
+  git rebase --interactive --autosquash $COMMIT_TO_BE_FIXED~
+else
+  echo "Usage: $0 <commit-ref> "
+fi
+
