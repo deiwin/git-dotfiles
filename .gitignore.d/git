@@ -1,4 +1,7 @@
 *
+!/.config
+!/.config/zshrc.d
+!/.config/zshrc.d/git-aliases
 !/.git_template
 !/.git_template/hooks
 !/.git_template/hooks/post-commit
