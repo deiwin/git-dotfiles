@@ -17,12 +17,19 @@ then
   # HEAD.
   COMMIT_TO_BE_FIXED=`git show --format=%H --no-patch $1`
   git commit --fixup=$COMMIT_TO_BE_FIXED
-  # Stash unstaged changes (the staged changes will already be in the 
+  # Stash unstaged changes (the staged changes will already be in the
   # commit created above) to avoid not being able to run the rebase
   # command.
-  git stash
+  if [[ -n $(git status -s) ]]
+  then
+	  git stash --include-untracked
+	  HAS_STASHED_CHANGES=true
+  fi
   git rebase --interactive --autosquash $COMMIT_TO_BE_FIXED~
-  git stash pop
+  if [[ -n "$HAS_STASHED_CHANGES" ]]
+  then
+	  git stash pop
+  fi
 else
   echo "Usage: $0 <commit-ref> "
 fi
