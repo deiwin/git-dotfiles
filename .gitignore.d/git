@@ -10,4 +10,5 @@
 !/.gitignore.d/git
 !/README.md
 !/bin
+!/bin/git-branch-merged
 !/bin/git-fixup
