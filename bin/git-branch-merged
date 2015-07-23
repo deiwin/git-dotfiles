@@ -1,0 +1,13 @@
+#!/bin/bash
+set -e
+# A command to run on a PR (Pull Request) branch that has just been merged into
+# master and deleted and can also be deleted locally. It also rebases the
+# master branch onto origin/master and checks it out.
+
+current_branch=$(git rev-parse --abbrev-ref HEAD)
+git fetch
+git checkout master
+git rebase origin/master
+git branch -d $current_branch
+git fetch -p
+

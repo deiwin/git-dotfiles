@@ -9,4 +9,5 @@
 !/.gitignore.d
 !/.gitignore.d/git
 !/bin
+!/bin/git-branch-merged
 !/bin/git-fixup

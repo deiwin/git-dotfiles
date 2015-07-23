@@ -1,1 +1,2 @@
 alias gfu="git fixup"
+alias gbm="git branch-merged"
