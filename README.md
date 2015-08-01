@@ -6,6 +6,7 @@
 |---------------------|-------|-----------------------------------------------------|
 | `git fixup`         | `gfu` | Adds current staged changes to the specified commit |
 | `git branch-merged` | `gbm` | A command to run on a PR (GitHub Pull Request) branch that has just been merged into master and deleted and can also be deleted locally. It also rebases the master branch onto origin/master and checks it out. |
+|                     | `glu` | An allias for a brief git log that shows the current branche's difference to its upstream equivalent. |
 
 ## Dependencies
 I'm using [RichiH/vcsh](https://github.com/RichiH/vcsh) for dotfile management.
