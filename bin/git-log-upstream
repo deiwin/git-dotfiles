@@ -1,0 +1,34 @@
+#!/bin/bash
+set -e
+
+# Logs the commits that differ between the current and the upstream branch.
+# If no upstream branch is found, it tries to log changes to origin/HEAD and
+# origin/master, in that order.
+
+log() {
+  local other=$1
+  # The format is taken from my zsh conf which gets it from prezto (${_git_log_brief_format})
+  git log --topo-order --pretty=format:"%C(green)%h%C(reset) %s%n%C(blue)(%ar by %an)%C(red)%d%C(reset)%n" "$other""...@"
+}
+
+if [ $# -eq 0 ]
+then
+  if output=$(log '@{upstream}' 2> /dev/null)
+  then
+	echo "$output"
+  elif output=$(log origin/HEAD 2> /dev/null)
+  then
+	echo "Couldn't find upstream, logging for origin/HEAD"
+	echo "$output"
+  elif output=$(log origin/master 2> /dev/null)
+  then
+	echo "Couldn't find upstream, logging for origin/master"
+	echo "$output"
+  else
+	echo "Couldn't find upstream"
+	exit 1
+  fi
+else
+  echo "Usage: $0"
+fi
+
