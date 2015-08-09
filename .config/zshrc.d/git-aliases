@@ -1,3 +1,3 @@
 alias gfu="git fixup"
 alias gbm="git branch-merged"
-alias glu='git log --topo-order --pretty=format:"${_git_log_brief_format}" "@{upstream}...@"'
+alias glu='git log-upstream'

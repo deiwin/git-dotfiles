@@ -12,3 +12,4 @@
 !/bin
 !/bin/git-branch-merged
 !/bin/git-fixup
+!/bin/git-log-upstream
