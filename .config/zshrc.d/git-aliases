@@ -1,3 +1,4 @@
 alias gfu="git fixup"
 alias gbm="git branch-merged"
 alias glu='git log-upstream'
+alias gcS='git diff-tree --no-commit-id --stat=$(tput cols) -r -c'
