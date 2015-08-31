@@ -1,6 +1,5 @@
 #!/bin/sh
 ### lolcommits hook (begin) ###
-export LANG="en_US.utf8"
-export PATH="/usr/bin:/usr/bin:$PATH"
-lolcommits --capture --stealth
+export LANG="en_US.UTF-8"
+lolcommits --capture --stealth --fork --delay=4
 ###  lolcommits hook (end)  ###
