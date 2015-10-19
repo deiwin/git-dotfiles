@@ -1,0 +1,21 @@
+#!/bin/bash
+set -e
+
+if [ $# -ne 1 ]
+then
+  >&2 echo "Expecting a single argument that points to the interactive rebase commit list file"
+  exit 1
+fi
+
+COMMIT_LIST_FILE="$1"
+
+# if-else as per http://stackoverflow.com/a/17072017/1456578
+if [ "$(uname)" == "Darwin" ]; then
+  sed -i "" -E 's/^(fixup[[:space:]]|f[[:space:]]|squash[[:space:]]|s[[:space:]])/pick /' $COMMIT_LIST_FILE
+elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
+  sed -i 's/^\(fixup\s\|f\s\|squash\s\|s\s\)/pick /' $COMMIT_LIST_FILE
+else
+  >&2 echo "Unsupported OS"
+  exit 1
+fi
+
