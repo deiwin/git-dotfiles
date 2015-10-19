@@ -13,3 +13,4 @@
 !/bin/git-branch-merged
 !/bin/git-fixup
 !/bin/git-log-upstream
+!/bin/replace_fixup_and_squash_with_pick
