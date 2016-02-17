@@ -1,6 +1,8 @@
 # ctags & Gutentags etc #
 #########################
 tags
+tags.temp
+tags.lock
 
 # Compiled source #
 ###################
