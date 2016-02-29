@@ -3,6 +3,8 @@
 tags
 tags.temp
 tags.lock
+.notags
+.gutctags
 
 # Compiled source #
 ###################
