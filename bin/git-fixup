@@ -25,7 +25,7 @@ do
   case $OPTION in
 	h)
 	  usage
-	  exit 1
+	  exit 0
 	  ;;
 	a)
 	  AUTOSQUASH=1
