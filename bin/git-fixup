@@ -24,24 +24,24 @@ EOF
 while getopts “haem:” OPTION
 do
   case $OPTION in
-	h)
-	  usage
-	  exit 0
-	  ;;
-	a)
-	  AUTOSQUASH=1
-	  ;;
-	e)
-	  EDIT=1
-	  ;;
-	m)
-	  HAS_MESSAGE=1
-	  MESSAGE="$OPTARG"
-	  ;;
-	?)
-	  usage
-	  exit 1
-	  ;;
+    h)
+      usage
+      exit 0
+      ;;
+    a)
+      AUTOSQUASH=1
+      ;;
+    e)
+      EDIT=1
+      ;;
+    m)
+      HAS_MESSAGE=1
+      MESSAGE="$OPTARG"
+      ;;
+    ?)
+      usage
+      exit 1
+      ;;
   esac
 done
 shift "$((OPTIND - 1))"
@@ -69,25 +69,25 @@ fi
 # command.
 if [[ -n $(git status -s) ]]
 then
-	git stash --include-untracked
-	HAS_STASHED_CHANGES=true
+  git stash --include-untracked
+  HAS_STASHED_CHANGES=true
 fi
 if [ -n "$AUTOSQUASH" ]; then
   if [ -n "$EDIT" ]; then
-	git rebase --interactive --autosquash $COMMIT_TO_BE_FIXED~
+    git rebase --interactive --autosquash $COMMIT_TO_BE_FIXED~
   else
-	GIT_SEQUENCE_EDITOR='true' git rebase --interactive --autosquash $COMMIT_TO_BE_FIXED~
+    GIT_SEQUENCE_EDITOR='true' git rebase --interactive --autosquash $COMMIT_TO_BE_FIXED~
   fi
 else
   if [ -n "$EDIT" ]; then
-	# The last true is needed because otherwise the editor would get the file twice for some reason
-	GIT_SEQUENCE_EDITOR='replace_fixup_and_squash_with_pick "$1" && $EDITOR "$1" && true' git rebase --interactive --autosquash $COMMIT_TO_BE_FIXED~
+    # The last true is needed because otherwise the editor would get the file twice for some reason
+    GIT_SEQUENCE_EDITOR='replace_fixup_and_squash_with_pick "$1" && $EDITOR "$1" && true' git rebase --interactive --autosquash $COMMIT_TO_BE_FIXED~
   else
-	GIT_SEQUENCE_EDITOR='replace_fixup_and_squash_with_pick' git rebase --interactive --autosquash $COMMIT_TO_BE_FIXED~
+    GIT_SEQUENCE_EDITOR='replace_fixup_and_squash_with_pick' git rebase --interactive --autosquash $COMMIT_TO_BE_FIXED~
   fi
 fi
 if [[ -n "$HAS_STASHED_CHANGES" ]]
 then
-	git stash pop
+  git stash pop
 fi
 
