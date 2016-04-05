@@ -59,11 +59,6 @@ fi
 COMMIT_TO_BE_FIXED=`git show --format=%H --no-patch $1`
 git commit --fixup=$COMMIT_TO_BE_FIXED
 
-if [ -n "$HAS_MESSAGE" ]
-then
-  git filter-branch -f --msg-filter "ex -C --cmd \"execute \\\"norm ggo\<CR>$MESSAGE\\\"\" --cmd \"w >> /dev/stdout\" --cmd \"q! \" /dev/stdin" -- @~..@
-fi
-
 # Stash unstaged changes (the staged changes will already be in the
 # commit created above) to avoid not being able to run the rebase
 # command.
@@ -72,6 +67,12 @@ then
   git stash --include-untracked
   HAS_STASHED_CHANGES=true
 fi
+
+if [ -n "$HAS_MESSAGE" ]
+then
+  git filter-branch -f --msg-filter "ex -C --cmd \"execute \\\"norm ggo\<CR>$MESSAGE\\\"\" --cmd \"w >> /dev/stdout\" --cmd \"q! \" /dev/stdin" -- @~..@
+fi
+
 if [ -n "$AUTOSQUASH" ]; then
   if [ -n "$EDIT" ]; then
     git rebase --interactive --autosquash $COMMIT_TO_BE_FIXED~
