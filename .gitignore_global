@@ -43,3 +43,7 @@ tags.lock
 .Trashes
 ehthumbs.db
 Thumbs.db
+
+# Bundler locals #
+##################
+.bundle
