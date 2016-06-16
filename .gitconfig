@@ -8,3 +8,5 @@
 [core]
 	excludesfile = /Users/deiwin/.gitignore_global
 	hooksPath = /Users/deiwin/.git_hooks
+[commit]
+	verbose = true
