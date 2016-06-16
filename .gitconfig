@@ -5,7 +5,6 @@
 	default = current
 [merge]
 	conflictstyle = diff3
-[init]
-	templatedir = ~/.git_template
 [core]
 	excludesfile = /Users/deiwin/.gitignore_global
+	hooksPath = /Users/deiwin/.git_hooks
