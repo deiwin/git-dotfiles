@@ -47,3 +47,12 @@ Thumbs.db
 # Bundler locals #
 ##################
 .bundle
+
+# Haskell        #
+##################
+.L.hs
+
+# Elixir #
+##########
+_build
+deps

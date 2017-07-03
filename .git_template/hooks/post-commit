@@ -1,5 +1,0 @@
-#!/bin/sh
-### lolcommits hook (begin) ###
-export LANG="en_US.UTF-8"
-lolcommits --capture --stealth --fork --delay=4
-###  lolcommits hook (end)  ###
