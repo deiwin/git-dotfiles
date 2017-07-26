@@ -3,3 +3,4 @@ alias gFu="git fixup -a"
 alias gbm="git branch-merged"
 alias glu='git log-upstream'
 alias gcS='git diff-tree --no-commit-id --stat=$(tput cols) -r -c'
+alias gpr="git show -s --date=short --pretty='format:%h (\"%s\", %ad)'"
