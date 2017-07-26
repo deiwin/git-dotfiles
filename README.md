@@ -7,7 +7,7 @@
 | `git fixup`         | `gfu`/`gFu` | Create a fixup commit with the current staged changes for the specified commit. |
 | `git branch-merged` | `gbm`       | A command to run on a PR (GitHub Pull Request) branch that has just been merged into master and deleted and can also be deleted locally. It also rebases the master branch onto origin/master and checks it out. |
 | `git log-upstream`  | `glu`       | A command for a brief git log that shows the current branch's difference to its upstream equivalent. Or the difference to `origin/HEAD` or `origin/master`, if no upsream is found.  |
-|                     | `gcS`       | A more concise alternative to `git show`. |
+|                     | `gcS`       | A more concise alternative to `git show`. `gcS` stands for "git commit show". |
 |                     | `gpr`       | Create a brief commit summary to use as a reference in other commits' messages. `gpr` stands for "git pretty ref". |
 
 ## Dependencies
