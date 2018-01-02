@@ -9,6 +9,7 @@
 | `git log-upstream`  | `glu`       | A command for a brief git log that shows the current branch's difference to its upstream equivalent. Or the difference to `origin/HEAD` or `origin/master`, if no upsream is found.  |
 |                     | `gcS`       | A more concise alternative to `git show`. `gcS` stands for "git commit show". |
 |                     | `gpr`       | Create a brief commit summary to use as a reference in other commits' messages. `gpr` stands for "git pretty ref". |
+|                     | `gsm`       | Show the specified commit's message, including its title. `gsm` stands for "git show message". |
 
 ## Dependencies
 I'm using [RichiH/vcsh](https://github.com/RichiH/vcsh) for dotfile management.
