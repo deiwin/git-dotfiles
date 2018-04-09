@@ -1,6 +1,7 @@
 [user]
 	name = Deiwin Sarjas
 	email = deiwin.sarjas@gmail.com
+	signingkey = 22211AD9B0DDA78354030B9EF6FBEC10E55DFC89
 [push]
 	default = current
 [merge]
@@ -10,3 +11,4 @@
 	hooksPath = /Users/deiwin/.git_hooks
 [commit]
 	verbose = true
+	gpgSign = true
