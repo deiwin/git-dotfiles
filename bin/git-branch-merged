@@ -5,9 +5,10 @@ set -e
 # master branch onto origin/master and checks it out.
 
 current_branch=$(git rev-parse --abbrev-ref HEAD)
+main_branch="${MAIN_BRANCH:-master}"
 git fetch
-git checkout master
-git rebase origin/master
-git branch -d $current_branch
+git checkout "$main_branch"
+git rebase origin/"$main_branch"
+git branch -d "$current_branch"
 git fetch -p
 
