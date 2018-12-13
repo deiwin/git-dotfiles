@@ -88,18 +88,20 @@ then
   git filter-branch -f --msg-filter "ex -C --cmd \"execute \\\"norm ggo\\<CR>$MESSAGE\\\"\" --cmd \"w >> /dev/stdout\" --cmd \"q! \" /dev/stdin" -- @~..@
 fi
 
+common_args=(rebase --interactive --autosquash)
+
 if [ -n "$AUTOSQUASH" ]; then
   if [ -n "$EDIT" ]; then
-    git rebase --interactive --autosquash "$COMMIT_TO_BE_FIXED~"
+    git "${common_args[@]}" "$COMMIT_TO_BE_FIXED~"
   else
-    GIT_SEQUENCE_EDITOR='true' git rebase --interactive --autosquash "$COMMIT_TO_BE_FIXED~"
+    GIT_SEQUENCE_EDITOR='true' git "${common_args[@]}" "$COMMIT_TO_BE_FIXED~"
   fi
 else
   if [ -n "$EDIT" ]; then
     # The last true is needed because otherwise the editor would get the file twice for some reason
-    GIT_SEQUENCE_EDITOR='replace_fixup_and_squash_with_pick "$1" && $EDITOR "$1" && true' git rebase --interactive --autosquash "$COMMIT_TO_BE_FIXED~"
+    GIT_SEQUENCE_EDITOR='replace_fixup_and_squash_with_pick "$1" && $EDITOR "$1" && true' git "${common_args[@]}" "$COMMIT_TO_BE_FIXED~"
   else
-    GIT_SEQUENCE_EDITOR='replace_fixup_and_squash_with_pick' git rebase --interactive --autosquash "$COMMIT_TO_BE_FIXED~"
+    GIT_SEQUENCE_EDITOR='replace_fixup_and_squash_with_pick' git "${common_args[@]}" "$COMMIT_TO_BE_FIXED~"
   fi
 fi
 if [[ -n "$HAS_STASHED_CHANGES" ]]
