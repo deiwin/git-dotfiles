@@ -1,5 +1,5 @@
 #!/bin/bash
-set -e
+set -eu
 
 usage() {
 cat << EOF
@@ -68,7 +68,7 @@ fi
 # commit it refers to will change once we create a new commit on the
 # HEAD.
 COMMIT_TO_BE_FIXED=$(git show --format=%H --no-patch "$1")
-if [ -n "$SQUASH" ]; then
+if [ -n "${SQUASH:-}" ]; then
   git commit --squash="$COMMIT_TO_BE_FIXED"
 else
   git commit --fixup="$COMMIT_TO_BE_FIXED"
@@ -83,21 +83,21 @@ then
   HAS_STASHED_CHANGES=true
 fi
 
-if [ -n "$HAS_MESSAGE" ]
+if [ -n "${HAS_MESSAGE:-}" ]
 then
   git filter-branch -f --msg-filter "ex -C --cmd \"execute \\\"norm ggo\\<CR>$MESSAGE\\\"\" --cmd \"w >> /dev/stdout\" --cmd \"q! \" /dev/stdin" -- @~..@
 fi
 
 common_args=(rebase --interactive --autosquash)
 
-if [ -n "$AUTOSQUASH" ]; then
-  if [ -n "$EDIT" ]; then
+if [ -n "${AUTOSQUASH:-}" ]; then
+  if [ -n "${EDIT:-}" ]; then
     git "${common_args[@]}" "$COMMIT_TO_BE_FIXED~"
   else
     GIT_SEQUENCE_EDITOR='true' git "${common_args[@]}" "$COMMIT_TO_BE_FIXED~"
   fi
 else
-  if [ -n "$EDIT" ]; then
+  if [ -n "${EDIT:-}" ]; then
     # The last true is needed because otherwise the editor would get the file twice for some reason
     GIT_SEQUENCE_EDITOR='replace_fixup_and_squash_with_pick "$1" && $EDITOR "$1" && true' git "${common_args[@]}" "$COMMIT_TO_BE_FIXED~"
   else
