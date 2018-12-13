@@ -16,9 +16,9 @@ through with the rebase.
 Using the -a flag, one can set the fixup! and squash! commits to be
 autosquashed as during a normal --interactive --autosquash rebase.
 
-Using the -s flag creates a squash! commit instead of a fixup! commit. Cobining
-this with -a allows one to modify (or reword) the commit message of the final
-version of the squashed commit.
+Using the -s flag creates a squash! commit instead of a fixup! commit.
+Combining this with -a allows one to modify (or reword) the commit message of
+the final version of the squashed commit.
 
 OPTIONS:
    -h         Show this message
