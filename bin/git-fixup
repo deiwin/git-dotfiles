@@ -1,14 +1,18 @@
 #!/bin/bash
-set -eu
+set -euo pipefail
 
 usage() {
 cat << EOF
-Usage: git fixup [options] <commit-ref>
+Usage: git fixup [options] [commit-ref]
 
 Fixes current staged changes up with the specified commit. I.e. the current
 staged changes will be added to a fixup commit and then rebased against the
 parent of the commit that is to be fixed up, as if it had been rebased with
 --interactive --autosquash --autostash.
+
+If no commit is specified, then fzf (a fuzzy finder) will be opened for commit
+selection instead. The list of commits to choose from is created with:
+git log --oneline -n 100
 
 Using the -e flag, one has the chance to edit the commit list before going
 through with the rebase.
@@ -57,8 +61,11 @@ do
 done
 shift "$((OPTIND - 1))"
 
-if [ $# -ne 1 ]
-then
+if [ $# -eq 0 ]; then
+  REF="$(git log --oneline -n 100 | fzf | awk '{ print $1 }')"
+elif [ $# -eq 1 ]; then
+  REF="$1"
+else
   usage
   exit 1
 fi
@@ -67,7 +74,7 @@ fi
 # because, say, if the argument is relative to the HEAD then the
 # commit it refers to will change once we create a new commit on the
 # HEAD.
-COMMIT_TO_BE_FIXED=$(git show --format=%H --no-patch "$1")
+COMMIT_TO_BE_FIXED=$(git show --format=%H --no-patch "$REF")
 if [ -n "${SQUASH:-}" ]; then
   git commit --squash="$COMMIT_TO_BE_FIXED"
 else
@@ -90,7 +97,7 @@ if [ -n "${AUTOSQUASH:-}" ]; then
 else
   if [ -n "${EDIT:-}" ]; then
     # The last true is needed because otherwise the editor would get the file twice for some reason
-    GIT_SEQUENCE_EDITOR='replace_fixup_and_squash_with_pick "$1" && $EDITOR "$1" && true' git "${common_args[@]}" "$COMMIT_TO_BE_FIXED~"
+    GIT_SEQUENCE_EDITOR='replace_fixup_and_squash_with_pick "$REF" && $EDITOR "$REF" && true' git "${common_args[@]}" "$COMMIT_TO_BE_FIXED~"
   else
     GIT_SEQUENCE_EDITOR='replace_fixup_and_squash_with_pick' git "${common_args[@]}" "$COMMIT_TO_BE_FIXED~"
   fi
