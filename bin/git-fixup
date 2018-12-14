@@ -5,12 +5,12 @@ usage() {
 cat << EOF
 Usage: git fixup [options] <commit-ref>
 
-Fixes current staged changes up with the specified commit.  I.e. the current
+Fixes current staged changes up with the specified commit. I.e. the current
 staged changes will be added to a fixup commit and then rebased against the
 parent of the commit that is to be fixed up, as if it had been rebased with
 --interactive --autosquash --autostash.
 
-Using the -e flag, one has the change to edit the commit list before going
+Using the -e flag, one has the chance to edit the commit list before going
 through with the rebase.
 
 Using the -a flag, one can set the fixup! and squash! commits to be
